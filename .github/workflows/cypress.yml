@@ -14,9 +14,18 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
       - name: Correr pruebas Cypress
         uses: cypress-io/github-action@v6
         with:
+          install: false
           browser: chrome
 
       - name: Subir screenshots si hay fallos
